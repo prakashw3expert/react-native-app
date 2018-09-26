@@ -6,15 +6,33 @@ import BlockButton from '../../components/button/button'
 import ColorBubble from '../../components/colorBubble/colorBubble'
 import { Metrics } from '../../themes/index.js';
 import styles from './add.styles.js'
-
+import DatePickerItem from '../../components/datePicker/datePicker'
+import moment from 'moment'
 export default class Login extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            startingDate: ''
+        }
+    }
+    renderDatePicker(){
+        return(
+            <DatePickerItem
+            date={this.state.startingDate}
+            minDate={moment().format("YYYY-MM-DD")}
+            maxDate={moment().add(1, 'years').format("YYYY-MM-DD")}
+            onDateChange={date => { this.setState({startingDate: date})}}
+          />
+        )
+    }
     render(){
         return(
             <View style={styles.container}>
             <Header title={"Add"}/>
             <View style={styles.inputBoxView}>
                 <TextInputBox placeholder={"When do you need to do?"} height={Metrics.screenHeight * 0.149} multiline={true} paddingTop={Metrics.screenHeight * 0.019}/>
-                <TextInputBox placeholder={"When is it due?"}/>
+                {/* <TextInputBox placeholder={"When is it due?"}/> */}
+                {this.renderDatePicker()}
             </View>
             <View style={styles.bottomButtonView}>
                 <View style={styles.colorBoxView}>

@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignSelf: 'center',
-        borderWidth: 2,
+        borderWidth: Metrics.screenWidth * 0.005,
         borderColor: Colors.borders,
         paddingHorizontal: Metrics.screenWidth * 0.026,
         fontSize: Metrics.screenWidth * 0.04,
