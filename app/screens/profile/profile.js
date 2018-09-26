@@ -15,7 +15,7 @@ export default class Login extends Component{
         return(
             <View style={{flex: 1, backgroundColor: 'white'}}>
                 <Header title={`Hello, ${userName}`}/>
-                <LogoutButton title={'Logout'} borderColor={'red'} onPress={() => this.onPressLogout()}/>
+                <LogoutButton title={'Logout'} bottom={0} onPress={() => this.onPressLogout()}/>
             </View>
         )
     }
