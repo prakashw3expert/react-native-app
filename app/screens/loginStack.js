@@ -32,8 +32,7 @@ class StackWithProps extends Component {
     }
     render() {
         return (
-            // <AuthStackNavigator	initialRouteName={this.props.isLogin ? 'TabRouter' : 'Login'} />
-            <AuthStackNavigator	initialRouteName={'Login'} />
+            <AuthStackNavigator	initialRouteName={(this.props.isLogin) ? 'TabRouter' : 'Login'} />
         )
     }
 }
