@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Text, StyleSheet} from 'react-native'
-import { Container, Header, Title } from 'native-base';
+import { Header } from 'native-base';
 import {Colors, Metrics, Fonts} from '../../themes/'
 
 export default class HeaderView extends Component {

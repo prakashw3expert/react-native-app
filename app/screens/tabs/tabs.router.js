@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { TabNavigator, StackActions, NavigationActions, SafeAreaView } from "react-navigation";
 import { View, Platform, Image } from "react-native";
-import { Icon } from "native-base";
 import Add from "../add/add.stack.js";
 import Profile from "../profile/profile.stack.js";
 import Todo from "../todo/todo.stack.js";
@@ -12,8 +11,6 @@ console.disableYellowBox = true;
 const tabBarOptions =
   Platform.OS === "ios"
     ? {
-        activeTintColor: Colors.orange,
-        inactiveTintColor: "rgb(120,120,120)",
         showIcon: true,
         upperCaseLabel: false,
         tabStyle: {
@@ -24,8 +21,6 @@ const tabBarOptions =
         }
       }
     : {
-        activeTintColor: Colors.orange,
-        inactiveTintColor: "rgb(120,120,120)",
         upperCaseLabel: false,
         showIcon: true,
         tabStyle: {
@@ -63,6 +58,7 @@ const Tabsnavigator = ({ logout, resetTab, initialRouteName, notificationData}) 
       tabBarOptions,
       notificationData,
       navigationOptions: ({ navigation }) => ({
+        title: '',
         tabBarOnPress: ({ scene, jumpToIndex }) => {
           const { route, focused, index } = scene;
         if (focused) {
@@ -81,14 +77,26 @@ const Tabsnavigator = ({ logout, resetTab, initialRouteName, notificationData}) 
           const { routeName } = navigation.state;
           let iconName;
           let iconStyle = focused
-            ? { color: Colors.orange , textAlign:'center', fontSize:12 , marginBottom:-6}
-            : { color: "rgb(117, 117, 117)",  textAlign:'center',fontSize: 24 ,marginBottom:-5};
+            ? {marginTop:15}
+            : {marginTop:15};
           if (routeName === "Todo") {
-            iconName = Images.feedActive;
+            if(focused){
+              iconName = Images.feedActive;
+            }else{
+              iconName = Images.feedInctive;
+            }
           } else if (routeName === "Add") {
-            iconName = Images.addActive;
+            if(focused){
+              iconName = Images.addActive;
+            }else{
+              iconName = Images.addInctive;
+            }
           } else if (routeName === "Profile") {
-            iconName = Images.profileActive;
+            if(focused){
+              iconName = Images.profileActive;
+            }else{
+              iconName = Images.profileInctive;
+            }
           }
           return <Image source={iconName} style={[styles.tabImage, iconStyle]} />
         }

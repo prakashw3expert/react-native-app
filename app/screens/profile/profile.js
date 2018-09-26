@@ -9,7 +9,7 @@ export default class Login extends Component{
         return(
             <View style={{flex: 1, backgroundColor: 'white'}}>
                 <Header title={`Hello, ${userName}`}/>
-                <LogoutButton title={'Logout'} borderColor={'red'}/>
+                <LogoutButton title={'Logout'} bottom={0}/>
             </View>
         )
     }
