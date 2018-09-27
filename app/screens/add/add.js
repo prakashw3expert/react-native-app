@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
+import { connect } from 'react-redux'
+
+import {addNewTodo} from '../../todoAsyncStore'
 import Header from '../../components/header/header.js'
 import TextInputBox from '../../components/textInput/textInput'
 import BlockButton from '../../components/button/button'
@@ -7,14 +10,43 @@ import ColorBubble from '../../components/colorBubble/colorBubble'
 import { Metrics } from '../../themes/index.js';
 import styles from './add.styles.js'
 
-export default class Login extends Component{
+class AddTodo extends Component{
+
+    constructor() {
+        super();
+        this.state = {
+            todoData: ' ',
+            todoTitle: ' ',
+            todoDate: ' ',
+            todoColor: ' '
+        };
+    }
+
+    textHandel = (text, type) => {
+        if(type == 'todoTitle'){
+            this.setState({ todoTitle: text })
+        } else {
+            this.setState({ todoData: text })
+        }
+    }
+
+    addTodo = () => {
+        let todoData = {
+            todoData: this.state.todoData,
+            todoTitle: this.state.todoTitle,
+            todoDate: this.state.todoDate,
+            todoColor: this.state.todoColor
+        };
+        this.props.addNewTodo(todoData)
+    }
+
     render(){
         return(
             <View style={styles.container}>
             <Header title={"Add"}/>
             <View style={styles.inputBoxView}>
-                <TextInputBox placeholder={"When do you need to do?"} height={Metrics.screenHeight * 0.149} multiline={true} paddingTop={Metrics.screenHeight * 0.019}/>
-                <TextInputBox placeholder={"When is it due?"}/>
+                <TextInputBox placeholder={"When do you need to do?"} height={Metrics.screenHeight * 0.149} multiline={true} paddingTop={Metrics.screenHeight * 0.019} onChangeText={(text) => this.textHandel(text, 'todoData') }/>
+                <TextInputBox placeholder={"When is it due?"} onChangeText={(text) => this.textHandel(text, 'todoTitle')}/>
             </View>
             <View style={styles.bottomButtonView}>
                 <View style={styles.colorBoxView}>
@@ -24,9 +56,26 @@ export default class Login extends Component{
                     <ColorBubble color={"rgba(189,16,224,0.25)"}/>
                     <ColorBubble color={"rgba(245,166,35,0.25)"}/>
                 </View>
-                <BlockButton title={"Add"}/>
+                <BlockButton title={"Add"} onPress={() => this.addTodo()}/>
             </View>
             </View>
         )
     }
 }
+
+let mapStateToProps = (state, props) => {
+    return {
+
+    }
+  }
+  
+  let mapDispatchToProps = (dispatch) => {
+    return {
+        addNewTodo: (todoData) => { dispatch(addNewTodo(todoData)) },
+    }
+  }
+  
+  export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(AddTodo)
