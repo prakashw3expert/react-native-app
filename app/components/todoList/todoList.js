@@ -16,7 +16,7 @@ export default class HeaderView extends Component {
     }
     renderItem(item){
         return(
-            <View style={{flexDirection: 'row', height: 80, }}>
+            <View style={{flexDirection: 'row', height: 80 }}>
                 <View style={{marginHorizontal: 20, alignItems: 'center', justifyContent: 'center'}}>
                     <View style={{height: 20, width: 20, borderRadius: 20/2, backgroundColor: item.item.color}}/>
                 </View>
