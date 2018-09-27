@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {View} from 'react-native'
 import { connect } from 'react-redux'
 
+import Loader from '../../components/loader/loader'
 import {getTodoData, startLoading} from '../../todoAsyncStore'
 import Header from '../../components/header/header.js'
 import TodoList from '../../components/todoList/todoList'
@@ -14,12 +15,12 @@ class Todo extends Component{
     }
 
     render(){
-        console.log('this.todos', this.props.todos)
         return(
             <View style={{flex: 1, backgroundColor: 'white'}}>
                 <Header title={"Todo"}/>
                 <View style={{flex: 1}}>
-                    <TodoList />
+                <Loader loading={this.props.isLoading}/>
+                    <TodoList data={this.props.todos}/>
                 </View>
             </View>
         )

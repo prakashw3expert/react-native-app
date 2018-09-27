@@ -8,13 +8,24 @@ import styles from './login.styles'
 
 export default class Login extends Component {
 
+    constructor() {
+        super();
+        this.state = {
+            name: '',
+        };
+    }
+
     onPressLogin = () => {
-        AsyncStorage.setItem('TodoUser', "HaveUser");
-        const LoginAction = StackActions.reset({
-            index: 0, actions: [{ type: NavigationActions.NAVIGATE, routeName: 'TabRouter' }], key: null, params: {
-              transition: 'SlideInFromRight'
-            } })
-        this.props.navigation.dispatch(LoginAction);
+        if(this.state.name){
+            AsyncStorage.setItem('TodoUser', this.state.name);
+            const LoginAction = StackActions.reset({
+                index: 0, actions: [{ type: NavigationActions.NAVIGATE, routeName: 'TabRouter' }], key: null, params: {
+                  transition: 'SlideInFromRight'
+                } })
+            this.props.navigation.dispatch(LoginAction);
+        } else {
+            alert("Enter name")
+        }
     }
     render() {
         return (
@@ -24,7 +35,7 @@ export default class Login extends Component {
                     <Text style={styles.txtTodo}>Todo</Text>
                 </View>
                 <View style={styles.inputBoxView}> 
-                    <InputBox placeholder={"Name"}/>
+                    <InputBox placeholder={"Name"} onChangeText={(text) => this.setState({ name: text })}/>
                     <BlockButton title={"Login"} onPress={() => this.onPressLogin()} />
                 </View>
             </View>

@@ -16,8 +16,9 @@ export function startLoading () {
 }
 
 export function addNewTodo (todoData)  {
+  AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(todoData))
   return {
     type: "ADD_NEW_TODO",
-    payload: AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+    payload: todoData
   }
 }

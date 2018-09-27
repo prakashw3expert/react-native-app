@@ -14,28 +14,39 @@ export default class HeaderView extends Component {
             ]
         }
     }
-    renderItem(item){
+
+    // shouldComponentUpdate(nextProps) {
+    //     console.log("NextProps are ", nextProps)
+    //     if(nextProps.data != this.props.data){
+    //         return true
+    //     }
+    //     return false
+    // }
+
+    renderItem(item, index){
+        console.log("Item is ", item)
         return(
             <View style={{flexDirection: 'row', height: 80 }}>
                 <View style={{marginHorizontal: 20, alignItems: 'center', justifyContent: 'center'}}>
-                    <View style={{height: 20, width: 20, borderRadius: 20/2, backgroundColor: item.item.color}}/>
+                    <View style={{height: 20, width: 20, borderRadius: 20/2, backgroundColor: item.item.todoColor}}/>
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                    <Text style={{fontSize: 22, fontFamily: Fonts.type.SFProTextRegular, color: 'rgb(0,0,0)'}}>{item.item.title}</Text>
-                    <Text style={{fontSize: 16, fontFamily: Fonts.type.SFProTextRegular, marginTop: 8, color: 'rgb(74,74,74)'}}>{item.item.date}</Text>
+                    <Text style={{fontSize: 22, fontFamily: Fonts.type.SFProTextRegular, color: 'rgb(0,0,0)'}}>{item.item.todoData}</Text>
+                    <Text style={{fontSize: 16, fontFamily: Fonts.type.SFProTextRegular, marginTop: 8, color: 'rgb(74,74,74)'}}>{item.item.dueDate}</Text>
                 </View>
                 
             </View>
         )
     }
     render(){
-        const {data} =  this.props
+        console.log("This.props ", this.props)
+        // let {data} =  this.props
         return(
             <FlatList 
-                data={this.state.data}
-                extraData={this.state}
+                extraData={this.props.data}
+                data={this.props.data}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={(item, index) =>this.renderItem(item)}
+                renderItem={this.renderItem}
             />
         )
     }

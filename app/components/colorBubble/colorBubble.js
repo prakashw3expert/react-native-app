@@ -6,7 +6,7 @@ export default class ColorBubble extends Component {
     render(){
         const {color, onPress} =  this.props
         return(
-            <TouchableOpacity style={[styles.bubble, {backgroundColor: color}]} activeOpacity={0.9}/>
+            <TouchableOpacity style={[styles.bubble, {backgroundColor: color}]} activeOpacity={0.9} onPress={onPress}/>
         )
     }
 }
