@@ -2,18 +2,19 @@ import React, {Component} from 'react'
 import {View} from 'react-native'
 import { connect } from 'react-redux'
 
-import {getTodoData} from '../../todoAsyncStore'
+import {getTodoData, startLoading} from '../../todoAsyncStore'
 import Header from '../../components/header/header.js'
 import TodoList from '../../components/todoList/todoList'
 
-export default class Todo extends Component{
+class Todo extends Component{
 
     componentDidMount() {
-        let data = getTodoData()
-        console.log("Data is ", data)
+        this.props.startLoading()
+        this.props.getTodoData()
     }
 
     render(){
+        console.log('this.todos', this.props.todos)
         return(
             <View style={{flex: 1, backgroundColor: 'white'}}>
                 <Header title={"Todo"}/>
@@ -25,19 +26,21 @@ export default class Todo extends Component{
     }
 }
 
-// let mapStateToProps = (state, props) => {
-//     return {
+let mapStateToProps = (state, props) => {
+  return {
+    isLoading: state.todo.loading,
+    todos: state.todo.todos,
+  }
+}
+  
+let mapDispatchToProps = (dispatch) => {
+  return {
+      getTodoData: () => { dispatch(getTodoData()) },
+      startLoading: () => {dispatch(startLoading())}
+  }
+}
 
-//     }
-//   }
-  
-//   let mapDispatchToProps = (dispatch) => {
-//     return {
-//         getTodoData: () => { dispatch(getTodoData()) },
-//     }
-//   }
-  
-//   export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps,
-//   )(Todo)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Todo)
