@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {View} from 'react-native'
 import { connect } from 'react-redux'
+import moment from 'moment'
 
+import DatePickerItem from '../../components/datePicker/datePicker'
 import {addNewTodo} from '../../todoAsyncStore'
 import Header from '../../components/header/header.js'
 import TextInputBox from '../../components/textInput/textInput'
@@ -40,13 +42,25 @@ class AddTodo extends Component{
         this.props.addNewTodo(todoData)
     }
 
+    renderDatePicker(){
+        return(
+            <DatePickerItem
+            date={this.state.startingDate}
+            minDate={moment().format("YYYY-MM-DD")}
+            maxDate={moment().add(1, 'years').format("YYYY-MM-DD")}
+            onDateChange={date => { this.setState({startingDate: date})}}
+          />
+        )
+    }
     render(){
         return(
             <View style={styles.container}>
             <Header title={"Add"}/>
             <View style={styles.inputBoxView}>
                 <TextInputBox placeholder={"When do you need to do?"} height={Metrics.screenHeight * 0.149} multiline={true} paddingTop={Metrics.screenHeight * 0.019} onChangeText={(text) => this.textHandel(text, 'todoData') }/>
-                <TextInputBox placeholder={"When is it due?"} onChangeText={(text) => this.textHandel(text, 'todoTitle')}/>
+                {/* <TextInputBox placeholder={"When is it due?"} onChangeText={(text) => this.textHandel(text, 'todoTitle')}/> */}
+                {/* <TextInputBox placeholder={"When is it due?"}/> */}
+                {this.renderDatePicker()}
             </View>
             <View style={styles.bottomButtonView}>
                 <View style={styles.colorBoxView}>
