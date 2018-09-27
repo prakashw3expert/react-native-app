@@ -4,7 +4,7 @@ import {Colors, Metrics, Fonts} from '../../themes'
 
 export default class CustomTextInput extends Component {
     render(){
-        const {multiline, paddingTop, placeholder, height} =  this.props
+        const {multiline, paddingTop, placeholder, height, onChangeText} =  this.props
         return(
             <TextInput style={[styles.textInput, {
                 height: height ? height : Metrics.screenHeight * 0.075, 
@@ -13,6 +13,7 @@ export default class CustomTextInput extends Component {
                 placeholder={placeholder}
                 multiline={multiline}
                 placeholderTextColor={Colors.placeholder}
+                onChangeText={onChangeText}
             />
         )
     }
