@@ -2,39 +2,48 @@ import React, {Component} from 'react'
 import {Text, StyleSheet, FlatList} from 'react-native'
 import {Colors, Metrics, Fonts} from '../../themes/'
 import { View } from 'native-base'
-import moment from 'react-moment'
-
+import moment from 'moment'
 export default class HeaderView extends Component {
     constructor(props){
         super(props);
         this.state = {
             data: [
-                {title: 'Build a React Native app', date: "28-09-2018", color: 'red'},
-                {title: 'Write tests', date: '26-09-2018', color: 'blue'}
+                {title: 'Build a React Native app', date: "2018-09-26", color: 'red'},
+                {title: 'Write tests', date: '2018-09-27', color: 'blue'},
+                {title: 'Write tests 123', date: '2018-09-28', color: 'pink'},
+                {title: 'Write tests 564', date: '2018-09-29', color: 'yellow'}
             ]
         }
     }
 
-    // shouldComponentUpdate(nextProps) {
-    //     console.log("NextProps are ", nextProps)
-    //     if(nextProps.data != this.props.data){
-    //         return true
-    //     }
-    //     return false
-    // }
+    renderItem(item){
+        let textDecorationLine = 'none'
+        let date = moment(item.item.dueDate).format("YYYY-MM-DD")
+        let today  =  moment().format("YYYY-MM-DD")
 
-    renderItem(item, index){
-        console.log("Item is ", item)
+        if( date === today){
+            date = "Due today"
+        }else if( date > today){
+            let tommrow = moment().add(1, 'days').format("YYYY-MM-DD")
+            if(tommrow === date) {
+                date = "Due tommrow"
+            }
+        }else if(date < today) {
+            let yesterday = moment().subtract(1, 'days').format("YYYY-MM-DD")
+            textDecorationLine = 'line-through'
+            if(yesterday === date) {
+                date = "Due yesterday"
+            }
+        }        
         return(
-            <View style={{flexDirection: 'row', height: 80 }}>
-                <View style={{marginHorizontal: 20, alignItems: 'center', justifyContent: 'center'}}>
-                    <View style={{height: 20, width: 20, borderRadius: 20/2, backgroundColor: item.item.todoColor}}/>
+            <View style={styles.cell}>
+                <View style={styles.statusView}>
+                    <View style={[styles.status, { backgroundColor: item.item.todoColor }]}/>
                 </View>
-                <View style={{ justifyContent: 'center'}}>
-                    <Text style={{fontSize: 22, fontFamily: Fonts.type.SFProTextRegular, color: 'rgb(0,0,0)'}}>{item.item.todoData}</Text>
-                    <Text style={{fontSize: 16, fontFamily: Fonts.type.SFProTextRegular, marginTop: 8, color: 'rgb(74,74,74)'}}>{item.item.dueDate}</Text>
+                <View style={styles.contentView}>
+                    <Text style={[styles.title, {textDecorationLine: textDecorationLine}]}>{item.item.todoData}</Text>
+                    <Text style={styles.timeStatus}>{date}</Text>
                 </View>
-                
             </View>
         )
     }
@@ -52,16 +61,32 @@ export default class HeaderView extends Component {
     }
 }
 const styles = StyleSheet.create({
-    header: {
-       backgroundColor: Colors.greenTheme,
-        height:  Metrics.screenHeight * 0.11
+    cell: {
+        flexDirection: 'row',
+        height: Metrics.screenHeight * 0.119
     },
-    text: {
-        color: Colors.white255,
-        fontSize: Metrics.screenWidth * 0.079,
-        fontFamily: Fonts.type.SFProDisplayMedium,
-        position: 'absolute',
-        bottom: Metrics.screenHeight * 0.017,
-        left: Metrics.screenWidth * 0.053
-      }
+    statusView: {
+        marginHorizontal: 20,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    status: {
+        height: Metrics.screenWidth * 0.053,
+        width: Metrics.screenWidth * 0.053,
+        borderRadius: Metrics.screenWidth * 0.053/2,
+    },
+    contentView: {
+        justifyContent: 'center'
+    },
+    title: {
+        fontSize: Metrics.screenWidth * 0.058,
+        fontFamily: Fonts.type.SFProTextRegular,
+        color: 'rgb(0,0,0)'
+    },
+    timeStatus: {
+        fontSize: Metrics.screenWidth * 0.042,
+        fontFamily: Fonts.type.SFProTextRegular,
+        marginTop:  Metrics.screenHeight * 0.011,
+        color: 'rgb(74,74,74)'
+    }
   })

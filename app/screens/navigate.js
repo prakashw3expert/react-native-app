@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { AsyncStorage } from 'react-native'
+import { connect } from 'react-redux'
+
 import LoginStack from './loginStack'
-export default class App extends Component {
+import { resumeUser } from '../todoAsyncStore'
+class App extends Component {
     constructor() {
         super();
         this.state = {
@@ -17,7 +20,7 @@ export default class App extends Component {
         var value = await AsyncStorage.getItem('TodoUser');
         if (value !== null) {
             // let data = JSON.parse(value);
-            // await this.props.resumeUser(data);
+            await this.props.resumeUser(value);
             await this.setState({ isReady: true, isLogin: true });
         } else {
             this.setState({ isReady: true });
@@ -35,3 +38,19 @@ export default class App extends Component {
     }
 }
 
+let mapStateToProps = (state, props) => {
+    return {
+ 
+    }
+}
+  
+let mapDispatchToProps = (dispatch) => {
+  return {
+    resumeUser: (data) => { dispatch(resumeUser(data)) },
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App)

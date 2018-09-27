@@ -8,26 +8,7 @@ export default class datePickerItem extends Component {
   constructor(props){
     super(props)
     this.state ={
-        error: '',
     }
-    this.onDateChange = this.onDateChange.bind(this)
-  }
-
-  componentWillReceiveProps(newProps){
-    if(newProps && newProps.isError === true && !newProps.date){
-      this.setState({"error": `${this.props.inputBoxTitle} is required.`})
-    } else if (newProps.date){
-      this.setState({"error": ""});
-    }
-
-  }
-  onDateChange(date){
-    if(date && this.state.error){
-      this.setState({"error": ""})
-    } else if (!date){
-      this.setState({"error": `${this.props.inputBoxTitle} is required.`});
-    }
-    this.props.onDateChange(date)
   }
   render(){
       return(
@@ -39,11 +20,9 @@ export default class datePickerItem extends Component {
                 mode="date"
                 placeholder="When is it due?"
                 format="YYYY-MM-DD"
-                minDate={this.props.minDate}
-                maxDate={this.props.maxDate}
                 confirmBtnText="Confirm"
                 cancelBtnText="Cancel"
-                iconComponent ={ <Icon name="" style={styles.dropIcon} />}
+                showIcon={false}
                 androidMode={"default"}
                 customStyles={{
                   dateIcon: { position: "absolute", top: 4 },
@@ -82,8 +61,8 @@ const styles = StyleSheet.create({
         width: '93%',
         borderColor: Colors.borders,
         borderWidth: 2,
-        height: Metrics.screenHeight * 0.095,
-        paddingTop: Metrics.screenHeight * 0.014
+        height: Metrics.screenHeight * 0.078,
+        paddingTop: Metrics.screenHeight * 0.01
     }
 
 });

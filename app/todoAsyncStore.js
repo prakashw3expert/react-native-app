@@ -15,6 +15,13 @@ export function startLoading () {
   }
 }
 
+export function resumeUser (userData) {
+  return {
+    type: "RESUME_USER",
+    payload: userData
+  }
+}
+
 export function addNewTodo (todoData)  {
   AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(todoData))
   return {

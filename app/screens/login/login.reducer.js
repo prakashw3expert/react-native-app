@@ -4,9 +4,10 @@ const initialState = {
 
 export default function loginReducer(state = initialState, action) {
   switch (action.type) {
-    case "LOGIN": {
+    case "RESUME_USER": {
+      console.log("Action.payload", action.payload)
       return {
-        ...state
+        userName: action.payload,
       }
     }
     default: {

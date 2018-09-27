@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import {View, AsyncStorage} from 'react-native'
+import { connect } from 'react-redux'
+
 import Header from '../../components/header/header'
 import LogoutButton from '../../components/button/logout'
 
-export default class Login extends Component{
+class Profile extends Component{
 
     onPressLogout = () => {
         AsyncStorage.removeItem('TodoUser');
@@ -11,7 +13,8 @@ export default class Login extends Component{
     }
 
     render(){
-        let userName = "Ali"
+        console.log("Profile props", this.props)
+        let userName = this.props.userName
         return(
             <View style={{flex: 1, backgroundColor: 'white'}}>
                 <Header title={`Hello, ${userName}`}/>
@@ -20,3 +23,20 @@ export default class Login extends Component{
         )
     }
 }
+
+let mapStateToProps = (state, props) => {
+    return {
+        userName: state.login.userName,
+    }
+}
+  
+let mapDispatchToProps = (dispatch) => {
+  return {
+    resumeUser: (data) => { dispatch(resumeUser(data)) },
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Profile)
