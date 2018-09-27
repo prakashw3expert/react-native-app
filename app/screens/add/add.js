@@ -18,7 +18,7 @@ class AddTodo extends Component{
         super();
         this.state = {
             todoData: ' ',
-            dueDate: ' ',
+            dueDate: '',
             todoColor: ' '
         };
     }
@@ -58,7 +58,7 @@ class AddTodo extends Component{
             <View style={styles.container}>
             <Header title={"Add"}/>
             <View style={styles.inputBoxView}>
-                <TextInputBox placeholder={"When do you need to do?"} height={Metrics.screenHeight * 0.149} multiline={true} paddingTop={Metrics.screenHeight * 0.019} onChangeText={(text) => this.textHandel(text, 'todoData') }/>
+                <TextInputBox placeholder={"When do you need to do?"} height={Metrics.screenHeight * 0.149} multiline={true} paddingTop={Metrics.screenHeight * 0.019} onChangeText={(text) => this.textHandel(text, 'todoData')} borderColor={'rgb(204,204,204)'}/>
                 {/* <TextInputBox placeholder={"When is it due?"} onChangeText={(text) => this.textHandel(text, 'todoTitle')}/> */}
                 {/* <TextInputBox placeholder={"When is it due?"}/> */}
                 {this.renderDatePicker()}

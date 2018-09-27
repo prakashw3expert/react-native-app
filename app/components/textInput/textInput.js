@@ -4,11 +4,12 @@ import {Colors, Metrics, Fonts} from '../../themes'
 
 export default class CustomTextInput extends Component {
     render(){
-        const {multiline, paddingTop, placeholder, height, onChangeText} =  this.props
+        const {multiline, paddingTop, placeholder, height, onChangeText, borderColor} =  this.props
         return(
             <TextInput style={[styles.textInput, {
                 height: height ? height : Metrics.screenHeight * 0.075, 
-                paddingTop: paddingTop ? paddingTop : 0
+                paddingTop: paddingTop ? paddingTop : 0,
+                borderColor: borderColor ? borderColor : Colors.borders
                 }]}
                 placeholder={placeholder}
                 multiline={multiline}
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignSelf: 'center',
-        borderWidth: Metrics.screenWidth * 0.005,
+        borderWidth: Metrics.screenWidth * 0.002,
         borderColor: Colors.borders,
         paddingHorizontal: Metrics.screenWidth * 0.026,
         fontSize: Metrics.screenWidth * 0.04,

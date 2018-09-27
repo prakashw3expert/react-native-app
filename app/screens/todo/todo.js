@@ -12,9 +12,7 @@ class Todo extends Component{
         this.props.startLoading()
         this.props.getTodoData()
     }
-
     render(){
-        console.log('this.todos', this.props.todos)
         return(
             <View style={{flex: 1, backgroundColor: 'white'}}>
                 <Header title={"Todo"}/>

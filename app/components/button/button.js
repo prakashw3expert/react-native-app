@@ -5,7 +5,7 @@ import {Colors, Metrics, Fonts} from '../../themes/'
 
 export default class BlockButton extends Component {
     render(){
-        const {title, bottom, onPress} =  this.props
+        const {title, onPress} =  this.props
         return(
             <Button style={[styles.button, { backgroundColor:  Colors.greenTheme}]} onPress={onPress}>
              <Text style={styles.text}>{title}</Text>
@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'center',
         height: Metrics.screenHeight * 0.078,
-        marginVertical: Metrics.screenHeight * 0.029
+        marginVertical: Metrics.screenHeight * 0.029,
+        elevation: 0
     },
     text: {
         color:'#fff',
