@@ -1,22 +1,21 @@
 import { StyleSheet } from 'react-native'
-import {Fonts, Metrics} from '../../themes/'
+import {Fonts, Metrics, Colors} from '../../themes/'
 
 export default StyleSheet.create({
     container: {
          flex: 1, 
-         backgroundColor: 'white' 
+         backgroundColor: Colors.white255
     },
     imageView:{
         alignItems: 'center',
-        flex: 3 ,
-        justifyContent: 'center'
+        marginTop: 200
     },
     txtTodo:{
-        marginTop: Metrics.screenHeight * 0.014,
-        fontSize: Metrics.screenWidth * 0.056,
+        marginTop: Metrics.screenHeight * 0.024,
+        fontSize: Metrics.screenWidth * 0.075,
         fontFamily: Fonts.type.SFProDisplayMedium
     },
     inputBoxView:{
-        flex: 1
+        marginTop: 180
     }
 });

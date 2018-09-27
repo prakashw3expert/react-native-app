@@ -18,7 +18,14 @@ const tabBarOptions =
           paddingVertical: 2,
           marginVertical: 2,
           backgroundColor: "transparent",
-        }
+
+        },
+        style: {
+          backgroundColor: Colors.white255,
+          paddingHorizontal: Metrics.screenWidth * 0.16,
+          borderTopColor: Colors.borders
+
+        },
       }
     : {
         upperCaseLabel: false,

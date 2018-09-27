@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignSelf: 'center',
-        height: Metrics.screenHeight * 0.075,
+        height: Metrics.screenHeight * 0.078,
         marginVertical: Metrics.screenHeight * 0.029
     },
     text: {

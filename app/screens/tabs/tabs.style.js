@@ -3,7 +3,7 @@ import { Colors, Metrics } from '../../themes/'
 
 export default StyleSheet.create({
 	tabImage: {
-		height: 24,
-		width:24,
+		height: 20,
+		width:20,
 	}
 });

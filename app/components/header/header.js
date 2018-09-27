@@ -15,8 +15,8 @@ export default class HeaderView extends Component {
 }
 const styles = StyleSheet.create({
     header: {
-       backgroundColor: Colors.greenTheme,
-        height:  Metrics.screenHeight * 0.11
+        backgroundColor: Colors.greenTheme,
+        height:  Metrics.screenHeight * 0.12
     },
     text: {
         color: Colors.white255,

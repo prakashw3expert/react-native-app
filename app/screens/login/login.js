@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, Text, AsyncStorage } from 'react-native'
 import { StackActions, NavigationActions } from "react-navigation";
+import { Content, Container } from 'native-base'
 import BlockButton from '../../components/button/button.js'
 import InputBox from '../../components/textInput/textInput.js'
 import { Images, Fonts } from '../../themes/'
@@ -18,7 +19,9 @@ export default class Login extends Component {
     }
     render() {
         return (
-            <View style={styles.container}>
+            <Container style={styles.container}>
+            <Content>
+            {/* <View style={styles.container}> */}
                 <View style={styles.imageView}>
                     <Image source={Images.appLogo} style={{}} />
                     <Text style={styles.txtTodo}>Todo</Text>
@@ -27,7 +30,9 @@ export default class Login extends Component {
                     <InputBox placeholder={"Name"}/>
                     <BlockButton title={"Login"} onPress={() => this.onPressLogin()} />
                 </View>
-            </View>
+            {/* </View> */}
+            </Content>
+            </Container>
         )
     }
 }
