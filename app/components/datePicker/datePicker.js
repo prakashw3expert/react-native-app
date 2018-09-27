@@ -8,7 +8,17 @@ export default class datePickerItem extends Component {
   constructor(props){
     super(props)
     this.state ={
+      error: ''
     }
+    this.onDateChange = this.onDateChange.bind(this)
+  }
+  onDateChange(date){
+    if(date && this.state.error){
+      this.setState({"error": ""})
+    } else if (!date){
+      this.setState({"error": `${this.props.inputBoxTitle} is required.`});
+    }
+    this.props.onDateChange(date)
   }
   render(){
       return(
@@ -60,9 +70,10 @@ const styles = StyleSheet.create({
     datePicker: {
         width: '93%',
         borderColor: Colors.borders,
-        borderWidth: 2,
+        borderWidth: Metrics.screenWidth * 0.002,
         height: Metrics.screenHeight * 0.078,
-        paddingTop: Metrics.screenHeight * 0.01
+        paddingTop: Metrics.screenHeight * 0.01,
+        borderRadius: Metrics.screenWidth * 0.013
     }
 
 });

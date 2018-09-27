@@ -13,7 +13,6 @@ class Profile extends Component{
     }
 
     render(){
-        console.log("Profile props", this.props)
         let userName = this.props.userName
         return(
             <View style={{flex: 1, backgroundColor: 'white'}}>

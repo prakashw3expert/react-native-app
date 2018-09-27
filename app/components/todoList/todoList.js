@@ -20,7 +20,8 @@ export default class HeaderView extends Component {
         let textDecorationLine = 'none'
         let date = moment(item.item.dueDate).format("YYYY-MM-DD")
         let today  =  moment().format("YYYY-MM-DD")
-
+        let titleColor = 'rgb(0,0,0)'
+        let timeColor = 'rgb(74,74,74)'
         if( date === today){
             date = "Due today"
         }else if( date > today){
@@ -33,6 +34,8 @@ export default class HeaderView extends Component {
             textDecorationLine = 'line-through'
             if(yesterday === date) {
                 date = "Due yesterday"
+                titleColor = 'rgb(155,155,155)'
+                timeColor = 'rgb(155,155,155)'
             }
         }        
         return(
@@ -41,15 +44,13 @@ export default class HeaderView extends Component {
                     <View style={[styles.status, { backgroundColor: item.item.todoColor }]}/>
                 </View>
                 <View style={styles.contentView}>
-                    <Text style={[styles.title, {textDecorationLine: textDecorationLine}]}>{item.item.todoData}</Text>
-                    <Text style={styles.timeStatus}>{date}</Text>
+                    <Text style={[styles.title, { textDecorationLine: textDecorationLine, color: titleColor }]}>{item.item.todoData}</Text>
+                    <Text style={[styles.timeStatus, { color: timeColor }]}>{date}</Text>
                 </View>
             </View>
         )
     }
     render(){
-        console.log("This.props ", this.props)
-        // let {data} =  this.props
         return(
             <FlatList 
                 extraData={this.props.data}
@@ -63,10 +64,10 @@ export default class HeaderView extends Component {
 const styles = StyleSheet.create({
     cell: {
         flexDirection: 'row',
-        height: Metrics.screenHeight * 0.119
+        height: Metrics.screenHeight * 0.11
     },
     statusView: {
-        marginHorizontal: 20,
+        marginHorizontal: Metrics.screenWidth * 0.053,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -79,14 +80,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     title: {
-        fontSize: Metrics.screenWidth * 0.058,
-        fontFamily: Fonts.type.SFProTextRegular,
-        color: 'rgb(0,0,0)'
+        fontSize: Metrics.screenWidth * 0.05,
+        fontFamily: Fonts.type.SFProTextRegular
     },
     timeStatus: {
-        fontSize: Metrics.screenWidth * 0.042,
+        fontSize: Metrics.screenWidth * 0.035,
         fontFamily: Fonts.type.SFProTextRegular,
-        marginTop:  Metrics.screenHeight * 0.011,
-        color: 'rgb(74,74,74)'
+        marginTop:  Metrics.screenHeight * 0.01
     }
   })

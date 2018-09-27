@@ -13,7 +13,6 @@ class Todo extends Component{
         this.props.startLoading()
         this.props.getTodoData()
     }
-
     render(){
         return(
             <View style={{flex: 1, backgroundColor: 'white'}}>

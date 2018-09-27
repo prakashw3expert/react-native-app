@@ -18,13 +18,11 @@ const tabBarOptions =
           paddingVertical: 2,
           marginVertical: 2,
           backgroundColor: "transparent",
-
         },
         style: {
           backgroundColor: Colors.white255,
           paddingHorizontal: Metrics.screenWidth * 0.16,
           borderTopColor: Colors.borders
-
         },
       }
     : {
@@ -36,15 +34,16 @@ const tabBarOptions =
           backgroundColor: "transparent"
         },
         style: {
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.white255,
           borderColor: "rgba(0,0,0,0.2)",
           borderWidth: 0,
           elevation: 10,
+          paddingHorizontal: Metrics.screenWidth * 0.16
         },
         indicatorStyle: { backgroundColor: "transparent" },
         labelStyle: {
-          marginTop: 2,
-          marginBottom: 0,
+          marginTop: 0,
+          marginBottom: 10,
           fontSize: 11,
           width: Metrics.screenWidth / 5
         }

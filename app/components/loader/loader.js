@@ -9,7 +9,6 @@ import {
 const Loader = props => {
     const {
         loading,
-        // ...attributes,
     } = props;
 
     return (
