@@ -18,8 +18,7 @@ class AddTodo extends Component{
         super();
         this.state = {
             todoData: ' ',
-            todoTitle: ' ',
-            todoDate: ' ',
+            dueDate: ' ',
             todoColor: ' '
         };
     }
@@ -35,20 +34,22 @@ class AddTodo extends Component{
     addTodo = () => {
         let todoData = {
             todoData: this.state.todoData,
-            todoTitle: this.state.todoTitle,
-            todoDate: this.state.todoDate,
+            dueDate: this.state.dueDate,
             todoColor: this.state.todoColor
         };
-        this.props.addNewTodo(todoData)
+        let {todos} = this.props
+        todos.push(todoData)
+        console.log("Todo data ", todos)
+        // this.props.addNewTodo(todoData)
     }
 
     renderDatePicker(){
         return(
             <DatePickerItem
-            date={this.state.startingDate}
-            minDate={moment().format("YYYY-MM-DD")}
-            maxDate={moment().add(1, 'years').format("YYYY-MM-DD")}
-            onDateChange={date => { this.setState({startingDate: date})}}
+            date={this.state.dueDate}
+            // minDate={moment().format("YYYY-MM-DD")}
+            // maxDate={moment().add(1, 'years').format("YYYY-MM-DD")}
+            onDateChange={date => { this.setState({dueDate: date})}}
           />
         )
     }
@@ -79,7 +80,7 @@ class AddTodo extends Component{
 
 let mapStateToProps = (state, props) => {
     return {
-
+        todos: state.todo.todos,
     }
   }
   

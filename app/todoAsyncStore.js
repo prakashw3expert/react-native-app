@@ -1,16 +1,23 @@
 import { AsyncStorage } from 'react-native'
 
 const STORAGE_KEY = '@Todo:todos'
-
-export async function getTodoData () {
-    let todoData = await AsyncStorage.getItem(STORAGE_KEY)
-    return todoData
+// AsyncStorage.removeItem(STORAGE_KEY);
+export function getTodoData () {
+  return {
+    type: "GET_TODO_DATA",
+    payload: AsyncStorage.getItem(STORAGE_KEY)
+  }
 }
 
-export async function addNewTodo (todoData)  {
-  try {
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(todoData))
-  } catch (e) {
-    console.log('error:', e)
+export function startLoading () {
+  return {
+    type: "START_LOADING"
+  }
+}
+
+export function addNewTodo (todoData)  {
+  return {
+    type: "ADD_NEW_TODO",
+    payload: AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
   }
 }
